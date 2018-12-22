@@ -83,8 +83,6 @@ export const appStyle = {
   },
   conversation:{
     marginRight:300
-}
-  
- 
+  }
 }
 

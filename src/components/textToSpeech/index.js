@@ -6,19 +6,17 @@ class TextToSpeech extends Component {
         super(props);
         this.state = {
             voices: []
-        };
-        this.playSpeech = this.playSpeech.bind(this);
+        }
+        this.playSpeech = this.playSpeech.bind(this)
     }
 
     componentWillMount(){
         window.speechSynthesis.onvoiceschanged = () => {
             const voices = window.speechSynthesis.getVoices();
-
             if (voices.length > 0) {
                 this.setState({ voices })
             }
         }
-       
     }
     componentWillReceiveProps(nextProps){
         console.log(nextProps,this.props)
@@ -29,37 +27,27 @@ class TextToSpeech extends Component {
  playSpeech(text) {
     
         if (window.speechSynthesis.speaking) {
-            window.speechSynthesis.cancel();
+            window.speechSynthesis.cancel()
         }
-
-        const { voice, children, rate, volume } = this.props;
-     
-
-      
-        let msg = new SpeechSynthesisUtterance();
+        const { voice, children, rate, volume } = this.props
+        let msg = new SpeechSynthesisUtterance()
         if (voice) {
-            msg.voice = this.state.voices[10].name;
-            msg.lang = this.state.voices[20].lang;
+            msg.voice = this.state.voices[1].name
+            msg.lang = this.state.voices[15].lang
         }
-
-        // Text passed as a prop takes priority, then assume children, and finally ''
-        // TODO: Parse out text of children only in the case of using <u> or <i>
-        msg.text = text || children || '';
-        msg.rate = rate;
-        msg.volume = volume;
-
+        msg.text = text || children || ''
+        msg.rate = rate
+        msg.volume = volume
+        msg.voice = this.state.voices[1]
         if ( this.state.voices.length > 0) {
             window.speechSynthesis.speak(msg);
         }
 }
   render() {
-    return (
-      <div>
-        
-      </div>
-    )
+    return (<div></div>)
  }
 }
+
 TextToSpeech.propTypes = {
     voice: PropTypes.string,
     rate: PropTypes.number,
@@ -67,8 +55,10 @@ TextToSpeech.propTypes = {
     text: PropTypes.string,
     children: PropTypes.any
 }
+
 TextToSpeech.defaultProps = {
     rate: 1,
-    volume: 1
+    volume: 2
 }
+
 export default TextToSpeech
