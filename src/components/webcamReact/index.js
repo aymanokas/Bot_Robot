@@ -1,5 +1,5 @@
 import React from "react";
-import Webcam from "react-webcam";
+import Webcam from "react-webcam"
  
 class WebcamReact extends React.Component {
   setRef = webcam => {
@@ -7,7 +7,7 @@ class WebcamReact extends React.Component {
   }
 
   capture = () => {
-    const imageSrc = this.webcam.getScreenshot();
+    const imageSrc = this.webcam.getScreenshot()
     return imageSrc
   }
 
